@@ -5,7 +5,6 @@ import java.util.List;
 import android.test.AndroidTestCase;
 import android.util.Log;
 
-import com.pplive.liveplatform.Constants;
 import com.pplive.liveplatform.core.service.live.ProgramService;
 import com.pplive.liveplatform.core.service.live.model.LiveStatusEnum;
 import com.pplive.liveplatform.core.service.live.model.Program;

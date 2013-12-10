@@ -4,7 +4,6 @@ import java.util.List;
 
 import android.test.AndroidTestCase;
 
-import com.pplive.liveplatform.Constants;
 import com.pplive.liveplatform.core.service.live.ProgramService;
 import com.pplive.liveplatform.core.service.live.model.Program;
 

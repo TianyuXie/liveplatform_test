@@ -2,13 +2,12 @@ package com.pplive.liveplatform.test;
 
 import java.util.List;
 
-import com.pplive.liveplatform.Constants;
+import android.test.AndroidTestCase;
+
 import com.pplive.liveplatform.core.service.live.LiveControlService;
 import com.pplive.liveplatform.core.service.live.ProgramService;
 import com.pplive.liveplatform.core.service.live.model.LiveStatusEnum;
 import com.pplive.liveplatform.core.service.live.model.Program;
-
-import android.test.AndroidTestCase;
 
 public class LiveControlServiceTest extends AndroidTestCase {
 
