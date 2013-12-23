@@ -2,7 +2,6 @@ package com.pplive.liveplatform.test;
 
 import android.annotation.TargetApi;
 import android.hardware.Camera;
-import android.hardware.Camera.CameraInfo;
 import android.hardware.Camera.Parameters;
 import android.media.MediaCodecInfo;
 import android.media.MediaCodecInfo.CodecCapabilities;
@@ -32,15 +31,8 @@ public class MediaCodecTest extends AndroidTestCase {
                     CodecCapabilities caps = info.getCapabilitiesForType(types[j]);
 
                     int[] colorFormats = caps.colorFormats;
-                    int colorFormat = colorFormats[0];
                     for (int k = 0; k < colorFormats.length; ++k) {
                         Log.d(TAG, "color: " + colorFormats[k]);
-                        if (MediaCodecInfo.CodecCapabilities.COLOR_FormatYUV420SemiPlanar == colorFormats[k]) {
-                            colorFormat = MediaCodecInfo.CodecCapabilities.COLOR_FormatYUV420SemiPlanar;
-                            
-                            
-                            Log.d(TAG, "colorFormat: " + colorFormats[k]);
-                        }
                     }
                     
                     MediaCodecInfo.CodecProfileLevel[] profiles = caps.profileLevels;
@@ -63,6 +55,10 @@ public class MediaCodecTest extends AndroidTestCase {
             
             for (int format : params.getSupportedPreviewFormats()) {
                 Log.d(TAG, "format: " + format);
+            }
+            
+            for (int[] fpsRange : params.getSupportedPreviewFpsRange()) {
+                Log.d(TAG, "min: " + fpsRange[0] + "; max: " + fpsRange[1]);
             }
             
             

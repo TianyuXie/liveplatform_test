@@ -3,18 +3,20 @@ package com.pplive.liveplatform.test;
 import java.util.List;
 
 import android.test.AndroidTestCase;
+import android.util.Log;
 
+import com.pplive.liveplatform.core.exception.LiveHttpException;
 import com.pplive.liveplatform.core.service.live.LiveControlService;
 import com.pplive.liveplatform.core.service.live.ProgramService;
+import com.pplive.liveplatform.core.service.live.model.LiveAlive;
 import com.pplive.liveplatform.core.service.live.model.LiveStatusEnum;
 import com.pplive.liveplatform.core.service.live.model.Program;
 
 public class LiveControlServiceTest extends AndroidTestCase {
 
-    @SuppressWarnings("unused")
     private static final String TAG = LiveControlServiceTest.class.getSimpleName();
     
-    public void testUpdateLiveStatus() {
+    public void testUpdateLiveStatus() throws LiveHttpException {
         
         List<Program> programs = ProgramService.getInstance().getProgramsByOwner("xiety0001");
         
@@ -38,5 +40,20 @@ public class LiveControlServiceTest extends AndroidTestCase {
                 LiveControlService.getInstance().updateLiveStatusByCoToken(Constants.TEST_COTK, program.getId(), LiveStatusEnum.LIVING, "xiety0001");
             }
         }
+    }
+    
+    public void testKeepLiveAlive() throws LiveHttpException {
+    	
+    	List<Program> programs = ProgramService.getInstance().getProgramsByOwner("xiety0001");
+    	
+    	for (Program program : programs) {
+    		if (LiveStatusEnum.LIVING == program.getLiveStatus()) {
+    			LiveAlive liveAlive = LiveControlService.getInstance().keepLiveAlive(Constants.TEST_COTK, program.getId());
+    			
+    			Log.d(TAG, "pid: " + liveAlive.getProgramId() + "; delay: " + liveAlive.getDelayInSeconds());
+    			
+    			break;
+    		}
+    	}
     }
 }

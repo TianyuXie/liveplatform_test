@@ -5,6 +5,7 @@ import java.util.List;
 import android.test.AndroidTestCase;
 import android.util.Log;
 
+import com.pplive.liveplatform.core.exception.LiveHttpException;
 import com.pplive.liveplatform.core.service.live.MediaService;
 import com.pplive.liveplatform.core.service.live.ProgramService;
 import com.pplive.liveplatform.core.service.live.model.LiveStatusEnum;
@@ -16,14 +17,14 @@ public class MediaServiceTest extends AndroidTestCase {
 
     private static final String TAG = MediaServiceTest.class.getSimpleName();
 
-    public void testGetPush() {
+    public void testGetPush() throws LiveHttpException {
         List<Program> programs = ProgramService.getInstance().getProgramsByOwner("xiety0001");
 
         for (Program program : programs) {
             if (LiveStatusEnum.INIT == program.getLiveStatus()) {
                 Push push = MediaService.getInstance().getPush(Constants.TEST_COTK, program.getId(), "xiety0001");
 
-                for (String url : push.getPushStringList()) {
+                for (String url : push.getPushUrlList()) {
                     Log.d(TAG, "push url: " + url);
                 }
                 
@@ -32,7 +33,7 @@ public class MediaServiceTest extends AndroidTestCase {
         }
     }
 
-    public void testGetPreviewWatchList() {
+    public void testGetPreviewWatchList() throws LiveHttpException {
         List<Program> programs = ProgramService.getInstance().getProgramsByOwner("xiety0001");
 
         for (Program program : programs) {
@@ -50,13 +51,13 @@ public class MediaServiceTest extends AndroidTestCase {
         }
     }
 
-    public void testGetPlayWatchList() {
+    public void testGetPlayWatchList() throws LiveHttpException {
         List<Program> programs = ProgramService.getInstance().getProgramsByOwner("xiety0001");
 
         for (Program program : programs) {
             if (LiveStatusEnum.LIVING == program.getLiveStatus()) {
 
-                List<Watch> watchs = MediaService.getInstance().getPlayWatchList(Constants.TEST_COTK, program.getId(), "xiety0001");
+                List<Watch> watchs = MediaService.getInstance().getPlayWatchListV1(Constants.TEST_COTK, program.getId(), "xiety0001");
                 
                 for (Watch watch : watchs) {
                     for (String url : watch.getWatchStringList()) {
