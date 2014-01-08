@@ -12,13 +12,16 @@ import com.pplive.liveplatform.core.service.live.model.LiveStatusEnum;
 import com.pplive.liveplatform.core.service.live.model.Program;
 import com.pplive.liveplatform.core.service.live.model.Push;
 import com.pplive.liveplatform.core.service.live.model.Watch;
+import com.pplive.liveplatform.core.service.live.model.WatchList;
+import com.pplive.liveplatform.core.service.passport.PassportService;
+import com.pplive.liveplatform.core.service.passport.model.LoginResult;
 
 public class MediaServiceTest extends AndroidTestCase {
 
     private static final String TAG = MediaServiceTest.class.getSimpleName();
 
     public void testGetPush() throws LiveHttpException {
-        List<Program> programs = ProgramService.getInstance().getProgramsByOwner("xiety0001");
+        List<Program> programs = ProgramService.getInstance().getProgramsByOwner(Constants.TEST_COTK, "xiety0001");
 
         for (Program program : programs) {
             if (LiveStatusEnum.INIT == program.getLiveStatus()) {
@@ -34,7 +37,7 @@ public class MediaServiceTest extends AndroidTestCase {
     }
 
     public void testGetPreviewWatchList() throws LiveHttpException {
-        List<Program> programs = ProgramService.getInstance().getProgramsByOwner("xiety0001");
+        List<Program> programs = ProgramService.getInstance().getProgramsByOwner(Constants.TEST_COTK, "xiety0001");
 
         for (Program program : programs) {
             if (LiveStatusEnum.PREVIEW == program.getLiveStatus()) {
@@ -52,7 +55,7 @@ public class MediaServiceTest extends AndroidTestCase {
     }
 
     public void testGetPlayWatchList() throws LiveHttpException {
-        List<Program> programs = ProgramService.getInstance().getProgramsByOwner("xiety0001");
+        List<Program> programs = ProgramService.getInstance().getProgramsByOwner(Constants.TEST_COTK, "xiety0001");
 
         for (Program program : programs) {
             if (LiveStatusEnum.LIVING == program.getLiveStatus()) {
@@ -64,6 +67,26 @@ public class MediaServiceTest extends AndroidTestCase {
                         Log.d(TAG, "sdk play url: " + url);
                     }
                 }
+                
+                break;
+            }
+        }
+    }
+    
+    public void testGetRecommendWathList() throws LiveHttpException {
+        
+        LoginResult result = PassportService.getInstance().login("xiety0001", "xiety0001");
+        
+        String coToken = result.getToken();
+        
+        List<Program> programs = ProgramService.getInstance().getProgramsByOwner(Constants.TEST_COTK, "xiety0001");
+        
+        for (Program program : programs) {
+            if (LiveStatusEnum.LIVING == program.getLiveStatus()) {
+
+                WatchList watchs = MediaService.getInstance().getPlayWatchListV2(coToken, program.getId(), "xiety0001");
+                
+                watchs.getRecommendedWatch();
                 
                 break;
             }

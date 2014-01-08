@@ -10,13 +10,15 @@ import com.pplive.liveplatform.core.service.live.ProgramService;
 import com.pplive.liveplatform.core.service.live.TokenService;
 import com.pplive.liveplatform.core.service.live.model.LiveStatusEnum;
 import com.pplive.liveplatform.core.service.live.model.Program;
+import com.pplive.liveplatform.core.service.passport.PassportService;
+import com.pplive.liveplatform.core.service.passport.model.LoginResult;
 
 public class TokenServiceTest extends AndroidTestCase {
 
     private static final String TAG = TokenServiceTest.class.getSimpleName();
 
     public void testGetLiveToken() throws LiveHttpException {
-        List<Program> programs = ProgramService.getInstance().getProgramsByOwner("xiety0001");
+        List<Program> programs = ProgramService.getInstance().getProgramsByOwner(Constants.TEST_COTK, "xiety0001");
 
         for (Program program : programs) {
             if (LiveStatusEnum.INIT == program.getLiveStatus()) {
@@ -30,7 +32,7 @@ public class TokenServiceTest extends AndroidTestCase {
     }
 
     public void testGetPlayToken() throws LiveHttpException {
-        List<Program> programs = ProgramService.getInstance().getProgramsByOwner("xiety0001");
+        List<Program> programs = ProgramService.getInstance().getProgramsByOwner(Constants.TEST_COTK, "xiety0001");
 
         for (Program program : programs) {
             if (LiveStatusEnum.LIVING == program.getLiveStatus()) {
@@ -41,5 +43,14 @@ public class TokenServiceTest extends AndroidTestCase {
                 break;
             }
         }
+    }
+    
+    public void testGetExpireTimeOfToken() throws LiveHttpException {
+        
+        LoginResult result = PassportService.getInstance().login("xiety0001", "xiety0001");
+        
+        long expire_time = TokenService.getInstance().getExpireTimeOfToken(result.getToken());
+        
+        Log.d(TAG, "expire time: " + expire_time);
     }
 }
