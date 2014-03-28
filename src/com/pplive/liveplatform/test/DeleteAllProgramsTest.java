@@ -4,7 +4,7 @@ import java.util.List;
 
 import android.test.AndroidTestCase;
 
-import com.pplive.liveplatform.core.exception.LiveHttpException;
+import com.pplive.liveplatform.core.service.exception.LiveHttpException;
 import com.pplive.liveplatform.core.service.live.ProgramService;
 import com.pplive.liveplatform.core.service.live.model.Program;
 import com.pplive.liveplatform.core.service.passport.PassportService;
@@ -14,11 +14,11 @@ public class DeleteAllProgramsTest extends AndroidTestCase {
 
     
     public void testDeleteAllProgram() throws LiveHttpException {
-        LoginResult result = PassportService.getInstance().login("xiety0001", "xiety0001");
+        LoginResult result = PassportService.getInstance().login("stefanielj", "510215");
         
         String coToken = result.getToken();
         
-        List<Program> programs = ProgramService.getInstance().getProgramsByOwner(Constants.TEST_COTK, "xiety0001");
+        List<Program> programs = ProgramService.getInstance().getProgramsByOwner(coToken, "stefanielj");
 
         if (programs == null || programs.size() <= 0) {
             return;

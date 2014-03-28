@@ -5,7 +5,7 @@ import java.util.List;
 import android.test.AndroidTestCase;
 import android.util.Log;
 
-import com.pplive.liveplatform.core.exception.LiveHttpException;
+import com.pplive.liveplatform.core.service.exception.LiveHttpException;
 import com.pplive.liveplatform.core.service.live.ProgramService;
 import com.pplive.liveplatform.core.service.live.TokenService;
 import com.pplive.liveplatform.core.service.live.model.LiveStatusEnum;

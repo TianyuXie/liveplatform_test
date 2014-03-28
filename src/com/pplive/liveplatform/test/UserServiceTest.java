@@ -3,7 +3,7 @@ package com.pplive.liveplatform.test;
 import android.test.AndroidTestCase;
 import android.util.Log;
 
-import com.pplive.liveplatform.core.exception.LiveHttpException;
+import com.pplive.liveplatform.core.service.exception.LiveHttpException;
 import com.pplive.liveplatform.core.service.live.UserService;
 import com.pplive.liveplatform.core.service.live.model.User;
 

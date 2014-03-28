@@ -5,7 +5,7 @@ import java.util.List;
 import android.test.AndroidTestCase;
 import android.util.Log;
 
-import com.pplive.liveplatform.core.exception.LiveHttpException;
+import com.pplive.liveplatform.core.service.exception.LiveHttpException;
 import com.pplive.liveplatform.core.service.live.LiveControlService;
 import com.pplive.liveplatform.core.service.live.ProgramService;
 import com.pplive.liveplatform.core.service.live.model.LiveAlive;
@@ -28,22 +28,22 @@ public class LiveControlServiceTest extends AndroidTestCase {
         
         for (Program program : programs) {
             if (LiveStatusEnum.NOT_START == program.getLiveStatus()) {
-                LiveControlService.getInstance().updateLiveStatusByCoToken(coToken, program, LiveStatusEnum.INIT, "xiety0001");
-                LiveControlService.getInstance().updateLiveStatusByCoToken(coToken, program, LiveStatusEnum.PREVIEW, "xiety0001");
-                LiveControlService.getInstance().updateLiveStatusByCoToken(coToken, program, LiveStatusEnum.LIVING, "xiety0001");
+                LiveControlService.getInstance().updateLiveStatusByCoToken(coToken, program, "xiety0001");
+                LiveControlService.getInstance().updateLiveStatusByCoToken(coToken, program, "xiety0001");
+                LiveControlService.getInstance().updateLiveStatusByCoToken(coToken, program, "xiety0001");
             }
         }
         
         for (Program program : programs) {
             if (LiveStatusEnum.INIT == program.getLiveStatus()) {
-                LiveControlService.getInstance().updateLiveStatusByCoToken(coToken, program, LiveStatusEnum.PREVIEW, "xiety0001");
-                LiveControlService.getInstance().updateLiveStatusByCoToken(coToken, program, LiveStatusEnum.LIVING, "xiety0001");
+                LiveControlService.getInstance().updateLiveStatusByCoToken(coToken, program, "xiety0001");
+                LiveControlService.getInstance().updateLiveStatusByCoToken(coToken, program, "xiety0001");
             }
         }
         
         for (Program program : programs) {
             if (LiveStatusEnum.PREVIEW == program.getLiveStatus()) {
-                LiveControlService.getInstance().updateLiveStatusByCoToken(coToken, program, LiveStatusEnum.LIVING, "xiety0001");
+                LiveControlService.getInstance().updateLiveStatusByCoToken(coToken, program, "xiety0001");
             }
         }
     }
