@@ -84,7 +84,7 @@ public class MediaServiceTest extends AndroidTestCase {
         for (Program program : programs) {
             if (LiveStatusEnum.LIVING == program.getLiveStatus()) {
 
-                WatchList watchs = MediaService.getInstance().getPlayWatchListV2(coToken, program.getId(), "xiety0001");
+                WatchList watchs = MediaService.getInstance().getPlayWatchListV3(coToken, program.getId(), "xiety0001");
                 
                 watchs.getRecommendedWatch();
                 
