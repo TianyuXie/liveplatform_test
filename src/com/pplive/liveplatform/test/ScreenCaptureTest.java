@@ -2,8 +2,6 @@ package com.pplive.liveplatform.test;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -61,9 +59,9 @@ public class ScreenCaptureTest extends AndroidTestCase {
 
         // 将rgb转为色值
         for (int m = 0; m < colors.length; m++) {
-            int r = (piex[m * 4 + 2] & 0xFF);
+            int r = (piex[m * 4 + 0] & 0xFF);
             int g = (piex[m * 4 + 1] & 0xFF);
-            int b = (piex[m * 4 + 0] & 0xFF);
+            int b = (piex[m * 4 + 2] & 0xFF);
             int a = (piex[m * 4 + 3] & 0xFF);
             colors[m] = (a << 24) + (r << 16) + (g << 8) + b;
         }

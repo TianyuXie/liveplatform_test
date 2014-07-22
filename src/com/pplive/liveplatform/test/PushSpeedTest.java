@@ -7,7 +7,7 @@ import org.apache.http.NameValuePair;
 import android.test.AndroidTestCase;
 import android.util.Log;
 
-import com.pplive.liveplatform.core.service.live.MediaService;
+import com.pplive.liveplatform.core.api.live.MediaAPI;
 
 public class PushSpeedTest extends AndroidTestCase {
 
@@ -124,8 +124,8 @@ public class PushSpeedTest extends AndroidTestCase {
 
     public void testGetClientIP() {
 
-        Log.d(TAG, "IP Address: " + MediaService.getInstance().getClientIPAddress());
+        Log.d(TAG, "IP Address: " + MediaAPI.getInstance().getClientIPAddress());
         
-        Log.d(TAG, "Speed: " + MediaService.getInstance().getAvgNetSpeed(256 * 1024, 5));
+        Log.d(TAG, "Speed: " + MediaAPI.getInstance().getAvgNetSpeed(256 * 1024, 5));
     }
 }

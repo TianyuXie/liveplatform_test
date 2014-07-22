@@ -3,9 +3,9 @@ package com.pplive.liveplatform.test;
 import android.test.AndroidTestCase;
 import android.util.Log;
 
-import com.pplive.liveplatform.core.service.live.auth.LiveTokenAuthentication;
-import com.pplive.liveplatform.core.service.live.auth.PlayTokenAuthentication;
-import com.pplive.liveplatform.core.service.live.auth.UserTokenAuthentication;
+import com.pplive.liveplatform.core.api.live.auth.LiveTokenAuthentication;
+import com.pplive.liveplatform.core.api.live.auth.PlayTokenAuthentication;
+import com.pplive.liveplatform.core.api.live.auth.UserTokenAuthentication;
 
 public class TokenAuthenticationTest extends AndroidTestCase {
 
